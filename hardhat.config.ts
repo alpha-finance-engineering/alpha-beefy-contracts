@@ -38,6 +38,11 @@ const config: DeploymentConfig = {
       chainId: 43114,
       accounts,
     },
+    fuji: {
+      url: "https://api.avax-test.network/ext/bc/C/rpc",
+      chainId: 43113,
+      accounts,
+    },
     polygon: {
       url: process.env.POLYGON_RPC || "https://polygon-rpc.com/",
       chainId: 137,

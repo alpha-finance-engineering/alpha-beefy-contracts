@@ -64,9 +64,8 @@ contract StrategyPangolinLP is Ownable, Pausable {
      * {WITHDRAWAL_FEE} - Fee taxed when a user withdraws funds. 10 === 0.1% fee.
      * {WITHDRAWAL_MAX} - Aux const used to safely calc the correct amounts.
      */
-    uint constant public CALL_FEE       = 55;
-    uint constant public TREASURY_FEE   = 833;
-    uint constant public STRATEGIST_FEE = 112;
+    uint constant public CALL_FEE       = 143;
+    uint constant public TREASURY_FEE   = 857;
     uint constant public MAX_FEE        = 1000;
 
     uint constant public WITHDRAWAL_FEE = 10;
@@ -184,7 +183,7 @@ contract StrategyPangolinLP is Ownable, Pausable {
      * 3.0% -> BIFI Holders
      */
     function chargeFees() internal {
-        uint256 toWavax = IERC20(png).balanceOf(address(this)).mul(45).div(1000);
+        uint256 toWavax = IERC20(png).balanceOf(address(this)).mul(35).div(1000);
         IUniswapRouter(pngrouter).swapExactTokensForTokens(toWavax, 0, pngToWavaxRoute, address(this), now.add(600));
 
         uint256 wavaxBal = IERC20(wavax).balanceOf(address(this));
