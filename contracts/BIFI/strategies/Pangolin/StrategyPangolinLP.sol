@@ -56,9 +56,8 @@ contract StrategyPangolinLP is Ownable, Pausable {
      * @dev Distribution of fees earned. This allocations relative to the % implemented on doSplit().
      * Current implementation separates 4.5% for fees.
      *
-     * {TREASURY_FEE} - 3.75% goes to BIFI holders through the {treasury}.
-     * {CALL_FEE} - 0.25% goes to whoever executes the harvest function as gas subsidy.
-     * {STRATEGIST_FEE} - 0.5% goes to the strategist.
+     * {TREASURY_FEE} - 3% goes to BIFI holders through the {treasury}.
+     * {CALL_FEE} - 0.5% goes to whoever executes the harvest function as gas subsidy.
      * {MAX_FEE} - Aux const used to safely calc the correct amounts.
      *
      * {WITHDRAWAL_FEE} - Fee taxed when a user withdraws funds. 10 === 0.1% fee.
@@ -178,8 +177,6 @@ contract StrategyPangolinLP is Ownable, Pausable {
     /**
      * @dev Takes out 4.5% as system fees from the rewards. 
      * 0.5% -> Call Fee
-     * 0.5% -> Treasury fee
-     * 0.5% -> Strategist fee
      * 3.0% -> BIFI Holders
      */
     function chargeFees() internal {
@@ -193,10 +190,6 @@ contract StrategyPangolinLP is Ownable, Pausable {
 
         uint256 callFee = wavaxBal.mul(CALL_FEE).div(MAX_FEE);
         IERC20(wavax).safeTransfer(tx.origin, callFee);
-
-        uint256 strategistFee = wavaxBal.mul(STRATEGIST_FEE).div(MAX_FEE);
-        IERC20(wavax).safeTransfer(strategist, strategistFee);
-
     }
     
     /**

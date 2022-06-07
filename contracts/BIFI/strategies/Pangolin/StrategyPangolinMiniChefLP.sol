@@ -72,6 +72,7 @@ contract StrategyPangolinMiniChefLP is StratManager, FeeManager, GasThrottler{
 
         // setup lp routing
         lpToken0 = IUniswapV2Pair(want).token0();
+        
         require(_outputToLp0Route[0] == output, "outputToLp0Route[0] != output");
         require(_outputToLp0Route[_outputToLp0Route.length - 1] == lpToken0, "outputToLp0Route[last] != lpToken0");
         outputToLp0Route = _outputToLp0Route;
